@@ -104,7 +104,16 @@ impl DelegationContract {
         );
     }
 
-    /// Revokes all delegation rights from `delegate`.
+    /// Revokes all delegation rights granted by `owner` to `delegate`.
+    ///
+    /// # Parameters
+    /// - `env`: The Soroban environment.
+    /// - `owner`: The address that granted the delegation.
+    /// - `delegate`: The address whose delegation is revoked.
+    ///
+    /// # Errors
+    /// Fails authorization if `owner` has not authorized the invocation.
+    /// If no delegation exists for this pair, the call succeeds without changes.
     ///
     /// # Security
     /// - [SEC-DEL-04] Removes the key entirely rather than zeroing fields so
